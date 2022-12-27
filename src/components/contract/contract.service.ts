@@ -9,7 +9,6 @@ import { AxiosResponse } from 'axios';
 import { AddressDTO } from './types';
 import { Response } from 'express';
 import { burnDTO, tokenDTO } from './types';
-import console from 'console';
 @Injectable()
 export class ContractService {
   constructor(
