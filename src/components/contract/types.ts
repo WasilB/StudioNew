@@ -19,5 +19,6 @@ export class burnDTO {
 }
 
 export class tokenDTO {
+  @IsNotEmpty()
   id: number;
 }
