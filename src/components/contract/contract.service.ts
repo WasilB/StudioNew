@@ -126,6 +126,18 @@ export class ContractService {
 
   async mintToken(mintDTO: MintTokenDTO, response: Response) {
     try {
+      if (!isJsonString(mintDTO.metadata)) {
+        return response.status(400).json({
+          success: false,
+          message: 'Invalid metadata',
+        });
+      }
+      if (!validateMetadata(mintDTO.metadata)) {
+        return response.status(400).json({
+          success: false,
+          message: 'Metadata mandatory fields are missing or empty',
+        });
+      }
 
       if (mintDTO.count != JSON.parse(mintDTO.metadata).length) {
         return response.status(400).json({
