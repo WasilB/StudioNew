@@ -30,13 +30,17 @@ export class BurnTokenDTO {
 export class tokenDTO {
 
   @IsNotEmpty()
-  @IsNumber()
-  token_id: number;
+  token_id: string;
 }
 
-export class UUIDDTO {
+
+export class UpdateTokenDTO {
 
   @IsNotEmpty()
-  @IsUUID()
-  id: string;
+  @IsNumber()
+  token_id: number;
+
+  @IsNotEmpty()
+  @IsString()
+  metadata: string;
 }

@@ -12,3 +12,25 @@ export const initWeb3 = () => {
   return web3
 };
 
+export const isJsonString = (string: string) => {
+  try {
+    JSON.parse(string);
+  } catch (e) {
+    return false;
+  }
+  return true;
+}
+
+export const validateMetadata = (string: string) => {
+  try {
+    let metadataObject = JSON.parse(string);
+    if (!metadataObject.name || metadataObject.name.replace(/\s+/g, '') == "" || !metadataObject.description || metadataObject.description.replace(/\s+/g, '') == "" || !metadataObject.image || metadataObject.image.replace(/\s+/g, '') == "") {
+      return false;
+    }
+
+  } catch (e) {
+    return false;
+  }
+  return true;
+}
+

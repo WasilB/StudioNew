@@ -1,7 +1,7 @@
 import { Controller, Get, Post, Body, Query, Response } from '@nestjs/common';
 import { validate } from 'class-validator';
 import { ContractService } from './contract.service';
-import { AddressDTO, UUIDDTO } from './types';
+import { AddressDTO, UpdateTokenDTO } from './types';
 import { MintTokenDTO } from './types';
 import { BurnTokenDTO, tokenDTO } from './types';
 
@@ -24,8 +24,13 @@ export class ContractController {
   }
 
   @Get('metadata')
-  async getTokenMetadata(@Query() uuidDTO: UUIDDTO, @Response() res) {
-    return this.contractService.getTokenMetadata(uuidDTO, res);
+  async getTokenMetadata(@Query() tokenDTO: tokenDTO, @Response() res) {
+    return this.contractService.getTokenMetadata(tokenDTO, res);
+  }
+
+  @Get('circulating-supply')
+  async getCirculatingSupply(@Response() res) {
+    return this.contractService.getCirculatingSupply( res);
   }
 
   @Post('mint-token')
@@ -37,7 +42,7 @@ export class ContractController {
     return this.contractService.burnToken(burnDTO, res);
   }
   @Post('update-metadata')
-  async updateMetadata(@Body() burnDTO: BurnTokenDTO, @Response() res) {
-    return this.contractService.updateMetadata(burnDTO, res);
+  async updateMetadata(@Body() updateTokenDTO: UpdateTokenDTO, @Response() res) {
+    return this.contractService.updateMetadata(updateTokenDTO, res);
   }
 }

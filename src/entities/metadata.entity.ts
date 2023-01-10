@@ -10,4 +10,7 @@ export class Metadata {
   @Column({default:true})
   status: boolean;
 
+  @Column()
+  tokenID: number;
+
 }
