@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Contract } from '../../entities/contract.entity';
 import { Repository } from 'typeorm';
 import { MintTokenDTO, UpdateTokenDTO } from './types';
-import { init721Contract, initWeb3, isJsonString, validateMetadata } from '../../utils/initContract';
+import { init721Contract, initWeb3, isJsonString, validateMetadata, validateMetadataArray } from '../../utils/initContract';
 import { HttpService } from '@nestjs/axios';
 import { AddressDTO } from './types';
 import { Response } from 'express';
@@ -132,7 +132,7 @@ export class ContractService {
           message: 'Invalid metadata',
         });
       }
-      if (!validateMetadata(mintDTO.metadata)) {
+      if (!validateMetadataArray(mintDTO.metadata)) {
         return response.status(400).json({
           success: false,
           message: 'Metadata mandatory fields are missing or empty',

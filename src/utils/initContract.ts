@@ -34,3 +34,20 @@ export const validateMetadata = (string: string) => {
   return true;
 }
 
+export const validateMetadataArray = (string: string) => {
+  try {
+    let metadataObjectArray = JSON.parse(string);
+
+    for (let index = 0; index < metadataObjectArray.length; index++) {
+      if (!metadataObjectArray[index].name || metadataObjectArray[index].name.replace(/\s+/g, '') == "" || !metadataObjectArray[index].description || metadataObjectArray[index].description.replace(/\s+/g, '') == "" || !metadataObjectArray[index].image || metadataObjectArray[index].image.replace(/\s+/g, '') == "") {
+        return false;
+      }
+    }
+ 
+
+  } catch (e) {
+    return false;
+  }
+  return true;
+}
+
