@@ -275,7 +275,7 @@ export class ContractService {
       if (!metadata.status) {
         return response.status(400).json({
           success: false,
-          message: 'Burned token metadata cannot be udpated',
+          message: 'Burned token metadata cannot be updated',
         });
       }
       metadata.metadata = updateTokenDTO.metadata
